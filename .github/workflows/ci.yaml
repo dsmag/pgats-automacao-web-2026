@@ -1,7 +1,8 @@
-
 name: Testes Cypress
 
 on:
+  workflow_dispatch:
+
   push:
     branches: [main]
   pull_request:
@@ -27,3 +28,50 @@ jobs:
 
       - name: Executar testes Cypress
         run: npx cypress run
+
+      - name: Salvar relatório para download
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-cypress
+          path: cypress/reports/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Preparar relatório para publicação
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          mkdir -p public
+          if [ -f cypress/reports/mochawesome.html ]; then
+            cp -r cypress/reports/. public/
+            touch public/.nojekyll
+          else
+            echo "Relatório não encontrado" > public/index.html
+          fi
+
+      - name: Preparar GitHub Pages
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Enviar arquivos para o Pages
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+  deploy-report:
+    needs: cypress-tests
+    if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Publicar relatório
+        id: deployment
+        uses: actions/deploy-pages@v4
