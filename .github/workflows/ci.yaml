@@ -41,8 +41,10 @@ jobs:
         if: always() && github.event_name != 'pull_request'
         run: |
           mkdir -p public
+
           if [ -f cypress/reports/mochawesome.html ]; then
             cp -r cypress/reports/. public/
+            cp cypress/reports/mochawesome.html public/index.html
             touch public/.nojekyll
           else
             echo "Relatório não encontrado" > public/index.html
