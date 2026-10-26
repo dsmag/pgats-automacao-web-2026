@@ -51,7 +51,7 @@ describe('Automation Exercise', () => {
         cy.visit('https://www.automationexercise.com/login') // PROBLEMA 1: repetição cy.visit
 
         // ACT
-        cy.xpath('//*[@data-qa="login-email"]').type('maga.teste.1792252860746@gmail.com')
+        cy.xpath('//*[@data-qa="login-email"]').type('maga.teste.1792891190598@gmail.com')
         cy.xpath('//*[@data-qa="login-password"]').type('12345')
         cy.xpath('//*[@data-qa="login-button"]').click()
         // cy.contains('Login')
@@ -85,7 +85,7 @@ describe('Automation Exercise', () => {
         cy.visit('https://www.automationexercise.com/login') 
 
         // ACT
-        cy.xpath('//*[@data-qa="login-email"]').type('maga.teste.1792252860746@gmail.com')
+        cy.xpath('//*[@data-qa="login-email"]').type('maga.teste.1792891190598@gmail.com')
         cy.xpath('//*[@data-qa="login-password"]').type('12345')
         cy.xpath('//*[@data-qa="login-button"]').click()
 
@@ -96,7 +96,7 @@ describe('Automation Exercise', () => {
         cy.url().should('include', 'login')
     });
 
-    it.only('Teste 05: Tentar cadastrar usuário com e-mail já cadastrado', () => {
+    it('Teste 05: Tentar cadastrar usuário com e-mail já cadastrado', () => {
         // ARRANGE
         // Ter uma conta para efetuar o login
         // maga.teste.1792252860746@gmail.com 
@@ -107,7 +107,7 @@ describe('Automation Exercise', () => {
 
         // ACT
         cy.xpath('//*[@data-qa="signup-name"]').type(`Maga Teste`)
-        cy.xpath('//*[@data-qa="signup-email"]').type(`maga.teste.1792252860746@gmail.com`)
+        cy.xpath('//*[@data-qa="signup-email"]').type(`maga.teste.1792891190598@gmail.com`)
         cy.xpath('//*[@data-qa="signup-button"]').click()
         
         // ASSERT

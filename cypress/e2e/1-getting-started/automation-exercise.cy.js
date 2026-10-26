@@ -50,7 +50,7 @@ describe('Automation Exercise', () => {
         cy.visit('https://www.automationexercise.com/login') // PROBLEMA 1: repetição cy.visit
 
         // ACT
-        cy.get('[data-qa="login-email"]').type('maga.teste.1792252860746@gmail.com')
+        cy.get('[data-qa="login-email"]').type('maga.teste.1792891190598@gmail.com')
         cy.get('[data-qa="login-password"]').type('12345')
         cy.get('[data-qa="login-button"]').click()
         // cy.contains('Login')
@@ -78,13 +78,13 @@ describe('Automation Exercise', () => {
     it('Teste 04: Efetuar logout', () => {
         // ARRANGE
         // Ter uma conta para efetuar o login
-        // maga.teste.1792252860746@gmail.com 
+        // maga.teste.1792891190598@gmail.com
         // 12345
         
         cy.visit('https://www.automationexercise.com/login') 
 
         // ACT
-        cy.get('[data-qa="login-email"]').type('maga.teste.1792252860746@gmail.com')
+        cy.get('[data-qa="login-email"]').type('maga.teste.1792891190598@gmail.com')
         cy.get('[data-qa="login-password"]').type('12345')
         cy.get('[data-qa="login-button"]').click()
 
@@ -100,7 +100,7 @@ describe('Automation Exercise', () => {
     it('Teste 05: Tentar cadastrar usuário com e-mail já cadastrado', () => {
         // ARRANGE
         // Ter uma conta para efetuar o login
-        // maga.teste.1792252860746@gmail.com 
+        // maga.teste.1792891190598@gmail.com
         // 12345
         
         cy.visit('https://www.automationexercise.com/')
@@ -108,7 +108,7 @@ describe('Automation Exercise', () => {
 
         // ACT
         cy.get('[data-qa="signup-name"]').type(`Maga Teste`)
-        cy.get('[data-qa="signup-email"]').type(`maga.teste.1792252860746@gmail.com`)
+        cy.get('[data-qa="signup-email"]').type(`maga.teste.1792891190598@gmail.com`)
         cy.get('[data-qa="signup-button"]').click()
         
         // ASSERT
